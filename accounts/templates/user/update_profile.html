@@ -1,0 +1,151 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div dir="rtl">
+<div class="container">
+    <div class="signup">
+
+    <div class="col-md-9" >
+        <form method="POST" enctype="multipart/form-data">
+            <h4 class="auth-header">تحديث معلوماتك الشخصية</h4>
+            {% csrf_token %}
+                <div class="form-group">
+                    {{ userForm.email|as_crispy_field  }}
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ userForm.first_name|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ userForm.last_name|as_crispy_field}}
+                    </div>
+                </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.name|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.surname|as_crispy_field}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ profileForm.who_i|as_crispy_field}}
+                </div>
+                <div class="form-group">
+                    {{ profileForm.subtitle|as_crispy_field}}
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.address|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.address_detail|as_crispy_field}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.address_detail|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.price|as_crispy_field}}
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.number_phone|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.working_hours|as_crispy_field}}
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.Waiting_time|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.Specialist_doctor|as_crispy_field}}
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.facebook|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.twitter|as_crispy_field}}
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.google|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ profileForm.doctor|as_crispy_field}}
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ profileForm.img|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-w"><button type="submit" class="btn btn-success">تعديل</button></div>
+            
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
+
+user            = models.OneToOneField(User , verbose_name=_("user"), on_delete=models.CASCADE)
+name            = models.CharField(_("الإسم :"), max_length=80)
+surname         = models.CharField(_("اللقب :"), max_length=50)
+subtitle        = models.CharField(_("نبذه عنك"), max_length=50)
+address         = models.CharField(_("المحافظه :"), max_length=50)
+address_detail  = models.CharField(_("العنوان بالتفصيل :"), max_length=50)
+number_phone    = models.CharField(_("الهاتف :"), max_length=50)
+working_hours   = models.CharField(_("عدد ساعات العمل"), max_length=50)
+Waiting_time    = models.IntegerField(_("مده الانتظار :"),blank=True, null=True)
+who_i           = models.TextField(_("من أنا : "), max_length=250,blank=True, null=True)
+price           = models.IntegerField(_("سعر الكشف :"), blank=True, null=True)
+facebook        = models.CharField(max_length=100 , blank=True, null=True)
+twitter         = models.CharField(max_length=100 , blank=True, null=True)
+google          = models.CharField(max_length=100 , blank=True, null=True)
+join_new        = models.DateTimeField(_("وقت الانضمام :"),auto_now_add=True)
+type_of_person  = models.CharField(_("النوع :"),choices = TYPE_OF_PERSON , max_length=50)
+doctor          = models.CharField(_("دكتور ؟"),choices = DOCTOR_IN, max_length=50,blank=True)

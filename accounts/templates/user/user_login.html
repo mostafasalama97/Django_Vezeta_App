@@ -1,0 +1,55 @@
+{% extends "main/base.html" %} {% load static %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap4 %} {% endcomment %}
+{% block content %}
+<div dir="rtl">
+<div class="container">
+    <div class="signup">
+    <div class="col-md-9" >
+        <form method="POST" enctype="multipart/form-data">
+            <h4 clearclass="auth-header">أنشاء حساب جديد</h4>
+
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.password|as_crispy_field }}
+            </div>
+            <div class="buttons-w  "><button type="submit" class="btn btn-success ml-5">تسجيل</button>
+            <button type="submit" class="btn btn-info  ml-5">Github</button>
+
+            <button type="submit" class="btn btn-primary  ml-5">facebook</button>
+            {% comment %} <button type="submit" class="btn btn-info  ml-5"><a href="{% url 'social:begin' 'github' %}">Github</a></button>
+            <button type="submit" class="btn btn-primary  ml-5"><a href="{% url 'social:begin' 'facebook' %}">facebook</a></button> {% endcomment %}
+
+        </div>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock content %} 
+
+
+
+
+<div dir="rtl">
+    <div class="container">
+        <div class="signup">
+        <div class="col-md-9" >
+            <form enctype="multipart/form-data">
+                <h4 class="auth-header">أنشاء حساب جديد</h4>
+    
+                <div class="form-group">
+                </div>
+                <div class="form-group">
+                </div>
+                <div class="buttons-w  "><button type="submit" class="btn btn-success ml-5">تسجيل</button>
+    
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
